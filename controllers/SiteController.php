@@ -138,31 +138,9 @@ class SiteController extends Controller
             $fp = $model->load(Yii::$app->request->post()) && $model->actionFile();
             $model->load(Yii::$app->request->post()) && $model->fileRead();
 
-
-//            $request = \Yii::$app->getRequest();
-//            if ($request->isPost && $model->load($request->post())) {
-//                \Yii::$app->response->format = ResponseInterface::class;
-//                return ['success' => $model->save()];
-
-
                     return $this->render('entry-confirm', ['model' => $model]);
                 } else {
                     return $this->render('entry', ['model' => $model]);
                 }
-
-    }
-
-    public function actionUpload(){
-
-        $model = new UploadForm();
-
-        if (Yii::$app->request->isPost) {
-        $model->file = UploadedFile::getInstance($model, 'taskCode');
-            if ($model->upload()) {
-        // file is uploaded successfully
-                return;
-            }
-        }
-        return $this->render('upload', ['model' => $model]);
     }
 }
